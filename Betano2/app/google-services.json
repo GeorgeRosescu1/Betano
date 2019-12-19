@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "316544703569",
+    "firebase_url": "https://betano2.firebaseio.com",
+    "project_id": "betano2",
+    "storage_bucket": "betano2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316544703569:android:80adff89a1336c87676c70",
+        "android_client_info": {
+          "package_name": "com.example.betano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316544703569-ioh1gm38e601ul60bq76tlujefm99c86.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.betano",
+            "certificate_hash": "35897de538ad5c33b4c26f36c91bcabda6d30a33"
+          }
+        },
+        {
+          "client_id": "316544703569-entir3jb3ltrhsa0inmquh9f2ajiidt8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUFRQf4uuyzzvLDjSCkqYWbp43my2tkzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316544703569-entir3jb3ltrhsa0inmquh9f2ajiidt8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
