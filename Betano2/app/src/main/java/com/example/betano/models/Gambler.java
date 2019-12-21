@@ -8,7 +8,7 @@ public class Gambler extends User {
 
 
     private double budget;
-    private Set<Bet> gambleSet = new HashSet<>();
+    private Set<Bet> myBets = new HashSet<>();
 
     public Gambler(){
 

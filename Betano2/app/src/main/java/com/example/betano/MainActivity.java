@@ -5,11 +5,14 @@ import android.os.Bundle;
 import com.example.betano.models.FootballLeague;
 import com.example.betano.models.FootballTeam;
 import com.example.betano.models.Gambler;
+import com.example.betano.views.FragmentAbout;
+import com.example.betano.views.FragmentAllBets;
+import com.example.betano.views.FragmentHome;
+import com.example.betano.views.FragmentMyBets;
+import com.example.betano.views.FragmentProfile;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.view.View;
-
+import androidx.appcompat.app.ActionBar;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -23,6 +26,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 import android.widget.Button;
@@ -30,26 +35,29 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    DatabaseReference reference;
-    FootballLeague footballLeague = FootballLeague.getInstance();
-    ArrayList<FootballTeam> top = footballLeague.getTop();
-    int index;
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    FragmentHome fragmentHome = new FragmentHome();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        fragmentTransaction.replace(R.id.content_frame, fragmentHome);
+        fragmentTransaction.commit();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final EditText text = findViewById(R.id.inText);
-        Button saveBtn = findViewById(R.id.main_btn);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Home");
+        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -57,34 +65,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                text.setText(top.get(index).getTeamName() + " " + top.get(index).getPoints());
-                index++;
-                if (index == top.size())
-                    index = 0;
-            }
-        });
-
-        final Gambler gambler = new Gambler("Vasile", 24, "+40799744070", "Fabian",
-                "vasilefabian", "gambler", 23.87);
-        Toast.makeText(this, "Firebase connection succes", Toast.LENGTH_LONG).show();
-        reference = FirebaseDatabase.getInstance().getReference().child("Gambler");
-
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                reference.push().setValue(gambler);
-                Toast.makeText(MainActivity.this, "data insertion succes", Toast.LENGTH_LONG).show();
-            }
-        });
-
 
     }
 
@@ -123,21 +103,59 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
+        ActionBar actionBar = getSupportActionBar();
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_profile) {
+        switch (id) {
+            case R.id.nav_home:
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentHome fragmentHome = new FragmentHome();
+                fragmentTransaction.replace(R.id.content_frame,fragmentHome);
+                fragmentTransaction.addToBackStack("home");
+                fragmentTransaction.commit();
+                break;
 
-        } else if (id == R.id.nav_all_bets) {
+            case R.id.nav_profile:
+                FragmentManager fragmentManager1 = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+                FragmentProfile fragmentProfile = new FragmentProfile();
+                fragmentTransaction1.replace(R.id.content_frame,fragmentProfile);
+                fragmentTransaction1.addToBackStack("profile");
+                fragmentTransaction1.commit();
+                break;
 
-        } else if (id == R.id.nav_my_bets) {
+            case R.id.nav_all_bets:
+                FragmentManager fragmentManager2 = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
+                FragmentAllBets fragmentAllBets = new FragmentAllBets();
+                fragmentTransaction2.replace(R.id.content_frame,fragmentAllBets);
+                fragmentTransaction2.addToBackStack("all_bets");
+                fragmentTransaction2.commit();
+                break;
 
-        } else if (id == R.id.nav_about) {
+            case R.id.nav_my_bets:
+                FragmentManager fragmentManager3 = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction3 = fragmentManager3.beginTransaction();
+                FragmentMyBets fragmentMyBets = new FragmentMyBets();
+                fragmentTransaction3.replace(R.id.content_frame,fragmentMyBets);
+                fragmentTransaction3.addToBackStack("profile");
+                fragmentTransaction3.commit();
+                break;
 
-        } else if (id == R.id.nav_log_out) {
+            case R.id.nav_about:
+                FragmentManager fragmentManager4 = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction4 = fragmentManager4.beginTransaction();
+                FragmentAbout fragmentAbout = new FragmentAbout();
+                fragmentTransaction4.replace(R.id.content_frame,fragmentAbout);
+                fragmentTransaction4.addToBackStack("profile");
+                fragmentTransaction4.commit();
+                break;
 
+            case R.id.nav_log_out:
+
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
