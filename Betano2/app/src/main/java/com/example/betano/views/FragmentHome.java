@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.betano.MainActivity;
@@ -19,6 +20,7 @@ import com.example.betano.models.FootballTeam;
 import com.example.betano.models.Gambler;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,6 +32,10 @@ public class FragmentHome extends Fragment {
     FootballLeague footballLeague = FootballLeague.getInstance();
     ArrayList<FootballTeam> top = footballLeague.getTop();
     int index;
+    TextView text;
+    Button saveBtn;
+    FloatingActionButton fab;
+    FirebaseAuth auth;
 
     @Nullable
     @Override
@@ -37,9 +43,10 @@ public class FragmentHome extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        final EditText text = view.findViewById(R.id.inText);
-        Button saveBtn = view.findViewById(R.id.main_btn);
-        FloatingActionButton fab = view.findViewById(R.id.fab);
+        text = view.findViewById(R.id.inText);
+        saveBtn = view.findViewById(R.id.main_btn);
+        fab = view.findViewById(R.id.fab);
+        auth.getInstance();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,17 +60,12 @@ public class FragmentHome extends Fragment {
                     index = 0;
             }
         });
-
-        final Gambler gambler = new Gambler("Popica", 27, "+44070", "jijel",
-                "popicajijel99", "gambler", 1243.87);
-        Toast.makeText(getContext(), "Firebase connection succes", Toast.LENGTH_LONG).show();
-        reference = FirebaseDatabase.getInstance().getReference().child("Gambler");
+        
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reference.push().setValue(gambler);
-                Toast.makeText(getActivity(), "Firebase connection succes", Toast.LENGTH_LONG).show();
+
             }
         });
         return view;

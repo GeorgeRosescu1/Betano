@@ -17,8 +17,8 @@ public class Gambler extends User {
         this.budget = budget;
     }
 
-    public Gambler(String firstName, int age, String phone, String lastName, String username, String userType, double budget) {
-        super(firstName, age, phone, lastName, username, userType);
+    public Gambler(String firstName, int age, String lastName, String username, String userType, double budget) {
+        super(firstName, age, lastName, username, userType);
         this.budget = budget;
     }
 

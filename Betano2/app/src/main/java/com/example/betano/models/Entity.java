@@ -2,28 +2,24 @@ package com.example.betano.models;
 
 public abstract class Entity {
 
-    private String username;
     private String password;
+    private String email;
 
     public Entity() {
 
     }
 
-    public Entity(String username) {
-        this.username = username;
-    }
-
-    public Entity(String username, String password) {
-        this.username = username;
+    public Entity(String password, String email) {
         this.password = password;
+        this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

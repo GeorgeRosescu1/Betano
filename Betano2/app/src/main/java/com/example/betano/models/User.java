@@ -4,7 +4,6 @@ public abstract class User extends Entity {
 
     private String firstName;
     private int age;
-    private String phone;
     private String lastName;
     private String userType;
 
@@ -13,11 +12,9 @@ public abstract class User extends Entity {
 
     }
 
-    public User(String firstName, int age, String phone, String lastName, String username, String userType) {
-        super(username);
+    public User(String firstName, int age, String phone, String lastName, String userType) {
         this.firstName = firstName;
         this.age = age;
-        this.phone = phone;
         this.lastName = lastName;
         this.userType = userType;
     }
@@ -36,14 +33,6 @@ public abstract class User extends Entity {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getLastName() {
