@@ -2,15 +2,13 @@ package com.example.betano.models;
 
 public abstract class Entity {
 
-    private String password;
     private String email;
 
     public Entity() {
 
     }
 
-    public Entity(String password, String email) {
-        this.password = password;
+    public Entity(String email) {
         this.email = email;
     }
 
@@ -22,11 +20,4 @@ public abstract class Entity {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

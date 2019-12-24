@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.betano.MainActivity;
 import com.example.betano.R;
+import com.example.betano.models.Admin;
+import com.example.betano.models.Employee;
 import com.example.betano.models.Gambler;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -66,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                 lastNameT = lastName.getText().toString();
                 ageT = age.getText().toString();
                 userTypeT = userType.getSelectedItem().toString();
+
                 if (userTypeT.equals("Gambler")) {
                     Gambler gambler = new Gambler();
 
@@ -73,8 +76,26 @@ public class RegisterActivity extends AppCompatActivity {
                     gambler.setLastName(lastNameT);
                     gambler.setAge(Integer.valueOf(ageT));
                     gambler.setEmail(emailT);
-                    gambler.setPassword(passT);
                     referenceG.push().setValue(gambler);
+                } else if (userTypeT.equals("Employee")) {
+                    Employee employee = new Employee();
+
+                    employee.setFirstName(firstNameT);
+                    employee.setLastName(lastNameT);
+                    employee.setAge(Integer.valueOf(ageT));
+                    employee.setEmail(emailT);
+                    employee.setSalary(2400);
+                    referenceE.push().setValue(employee);
+                } else if (userTypeT.equals("Admin")) {
+                    Admin admin = new Admin();
+
+                    admin.setFirstName(firstNameT);
+                    admin.setLastName(lastNameT);
+                    admin.setAge(Integer.valueOf(ageT));
+                    admin.setEmail(emailT);
+                    referenceA.push().setValue(admin);
+                }else{
+                    Log.w(TAG,"Unknown user type",new Exception());
                 }
                 if (emailT != null && passT != null) {
                     auth.createUserWithEmailAndPassword(emailT, passT)

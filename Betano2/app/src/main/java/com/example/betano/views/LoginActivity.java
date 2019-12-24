@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     Button loginBtn;
-    TextView signUpBtn;
+    TextView signUpBtn, displatTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_login);
 
+        displatTxt = findViewById(R.id.login_text);
         signUpBtn = findViewById(R.id.signUpText);
         loginBtn = findViewById(R.id.loginBtn);
         final EditText editTextMail = findViewById(R.id.userMail);
         final EditText editTextPass = findViewById(R.id.userPass);
-
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
