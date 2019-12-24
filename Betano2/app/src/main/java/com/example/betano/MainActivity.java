@@ -1,6 +1,5 @@
 package com.example.betano;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.betano.models.FootballLeague;
@@ -11,7 +10,6 @@ import com.example.betano.views.FragmentAllBets;
 import com.example.betano.views.FragmentHome;
 import com.example.betano.views.FragmentMyBets;
 import com.example.betano.views.FragmentProfile;
-import com.example.betano.views.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.ActionBar;
@@ -21,7 +19,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -45,7 +42,6 @@ public class MainActivity extends AppCompatActivity
     FragmentManager fragmentManager = getSupportFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     FragmentHome fragmentHome = new FragmentHome();
-    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,9 +154,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_log_out:
-                auth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
-                finish();
+
                 break;
         }
 
