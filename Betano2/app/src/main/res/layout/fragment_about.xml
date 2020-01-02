@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:id="@+id/imageview_about"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/logo" />
 
     <TextView
-        android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/text_about"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_centerVertical="true"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="25dp"
-        android:gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:layout_below="@id/imageview_about"
         android:text="Betano este o aplicatie pentru pariuri online, avand toate drepturile rezervate. Trebuie sa ai minim 18 ani pentru a paria."
-        android:textColor="#F00"
+        android:textColor="#66cccc"
         android:textSize="25sp" />
-</FrameLayout>
+</RelativeLayout>
