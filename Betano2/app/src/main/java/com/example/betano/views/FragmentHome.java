@@ -37,7 +37,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class FragmentHome extends Fragment {
 
-    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Admin");
     FootballLeague footballLeague = FootballLeague.getInstance();
     ArrayList<FootballTeam> top = footballLeague.getTop();
     int index;
@@ -57,21 +56,7 @@ public class FragmentHome extends Fragment {
         fab = view.findViewById(R.id.fab);
         auth.getInstance();
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    User user = new Admin();
-                    user.setFirstName(ds.getValue(Admin.class).getFirstName());
-                    text.setText(user.getFirstName());
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            }
-        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

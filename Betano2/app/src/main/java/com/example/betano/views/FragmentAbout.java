@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.betano.R;
+import com.example.betano.models.FootballMatchBet;
+
+import java.util.List;
 
 public class FragmentAbout extends Fragment {
 
@@ -21,6 +24,8 @@ public class FragmentAbout extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                            @Nullable  Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
+
+
         return view;
     }
 

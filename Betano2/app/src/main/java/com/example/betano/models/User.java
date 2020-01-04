@@ -1,11 +1,12 @@
 package com.example.betano.models;
 
-public abstract class User extends Entity {
+public class User {
 
     private String firstName;
     private int age;
     private String lastName;
     private String userType;
+    private String email;
 
 
     public User() {
@@ -16,6 +17,22 @@ public abstract class User extends Entity {
         this.firstName = firstName;
         this.age = age;
         this.lastName = lastName;
+        this.userType = userType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 

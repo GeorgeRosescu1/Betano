@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText email, pass, firstName, lastName, age;
     Spinner userType;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
-    DatabaseReference referenceG, referenceA, referenceE;
+    DatabaseReference referenceU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         lastName = findViewById(R.id.last_name_register);
         age = findViewById(R.id.age_register);
         userType = findViewById(R.id.type_spinner);
-        referenceG = FirebaseDatabase.getInstance().getReference().child("Gambler");
-        referenceA = FirebaseDatabase.getInstance().getReference().child("Admin");
-        referenceE = FirebaseDatabase.getInstance().getReference().child("Employee");
+        referenceU = FirebaseDatabase.getInstance().getReference().child("User");
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,28 +70,31 @@ public class RegisterActivity extends AppCompatActivity {
                 if (userTypeT.equals("Gambler")) {
                     Gambler gambler = new Gambler();
 
+                    gambler.setUserType("Gambler");
                     gambler.setFirstName(firstNameT);
                     gambler.setLastName(lastNameT);
                     gambler.setAge(Integer.valueOf(ageT));
                     gambler.setEmail(emailT);
-                    referenceG.push().setValue(gambler);
+                    referenceU.push().setValue(gambler);
                 } else if (userTypeT.equals("Employee")) {
                     Employee employee = new Employee();
 
+                    employee.setUserType("Employee");
                     employee.setFirstName(firstNameT);
                     employee.setLastName(lastNameT);
                     employee.setAge(Integer.valueOf(ageT));
                     employee.setEmail(emailT);
                     employee.setSalary(2400);
-                    referenceE.push().setValue(employee);
+                    referenceU.push().setValue(employee);
                 } else if (userTypeT.equals("Admin")) {
                     Admin admin = new Admin();
 
+                    admin.setUserType("Admin");
                     admin.setFirstName(firstNameT);
                     admin.setLastName(lastNameT);
                     admin.setAge(Integer.valueOf(ageT));
                     admin.setEmail(emailT);
-                    referenceA.push().setValue(admin);
+                    referenceU.push().setValue(admin);
                 }else{
                     Log.w(TAG,"Unknown user type",new Exception());
                 }
