@@ -14,8 +14,8 @@
         android:paddingTop="60dp">
 
         <ImageView
-            android:layout_width="320dp"
-            android:layout_height="320dp"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/logo">
 
@@ -76,12 +76,14 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Login">
+            android:text="Login"
+            android:background="@color/gold">
 
         </androidx.appcompat.widget.AppCompatButton>
 
@@ -92,7 +94,8 @@
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:text="No account yet? Create one"
-            android:textSize="16dip">
+            android:textSize="16dp"
+            android:textColor="@color/gold">
 
         </TextView>
 

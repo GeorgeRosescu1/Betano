@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_profile:
+                getSupportActionBar().setTitle("Profile");
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
                 FragmentProfile fragmentProfile = new FragmentProfile();
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_all_bets:
+                getSupportActionBar().setTitle("All Bets");
                 FragmentManager fragmentManager2 = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
                 FragmentAllBets fragmentAllBets = new FragmentAllBets();
@@ -135,6 +137,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_my_bets:
+                getSupportActionBar().setTitle("My Bets");
                 FragmentManager fragmentManager3 = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction3 = fragmentManager3.beginTransaction();
                 FragmentMyBets fragmentMyBets = new FragmentMyBets();
@@ -144,6 +147,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_about:
+                getSupportActionBar().setTitle("About");
                 FragmentManager fragmentManager4 = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction4 = fragmentManager4.beginTransaction();
                 FragmentAbout fragmentAbout = new FragmentAbout();
