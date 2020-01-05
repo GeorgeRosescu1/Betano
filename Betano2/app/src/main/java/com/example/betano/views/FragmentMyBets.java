@@ -33,7 +33,7 @@ public class FragmentMyBets extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_bets, container, false);
 
-        reference = database.getReference().child("Bet");
+        reference = database.getReference().child("FootballMatchBet");
         footballLeague = FootballLeague.getInstance();
         betF.setHomeTeam(footballLeague.getTop().get(1));
         betF.setAwayTeam(footballLeague.getTop().get(2));

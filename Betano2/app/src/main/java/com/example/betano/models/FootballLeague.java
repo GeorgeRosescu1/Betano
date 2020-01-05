@@ -18,33 +18,33 @@ public class FootballLeague {
     }
 
     private static void populateTop() {
-        FootballTeam team1 = new FootballTeam("CFR Cluj", 25 / 121 / 123.43,
+        FootballTeam team1 = new FootballTeam("CFR Cluj", 25121123.43,
                 "Dr.Constantin Radulescu", 44);
-        FootballTeam team2 = new FootballTeam("FCSB", 31 / 213 / 003.23,
+        FootballTeam team2 = new FootballTeam("FCSB", 31213003.23,
                 "Ghencea", 39);
-        FootballTeam team3 = new FootballTeam("Astra Giurgiu", 12 / 321 / 123.03,
+        FootballTeam team3 = new FootballTeam("Astra Giurgiu", 12321123.03,
                 "Marin Anastasovici", 43);
-        FootballTeam team4 = new FootballTeam("FC Viitorul", 10 / 151 / 003.02,
+        FootballTeam team4 = new FootballTeam("FC Viitorul", 10151003.02,
                 "Ovidiu", 35);
-        FootballTeam team5 = new FootballTeam("Universitatea Craiova", 9 / 441 / 122.01,
+        FootballTeam team5 = new FootballTeam("Universitatea Craiova", 9441122.01,
                 "Ion Oblemenco", 37);
-        FootballTeam team6 = new FootballTeam("Gaz Metan Medias", 7 / 821 / 500.12,
+        FootballTeam team6 = new FootballTeam("Gaz Metan Medias", 7821500.12,
                 "Gaz Metan", 36);
-        FootballTeam team7 = new FootballTeam("FC Botosani", 8 / 621 / 933.43,
+        FootballTeam team7 = new FootballTeam("FC Botosani", 8621933.43,
                 "Stadionul Municipal Botosani", 33);
-        FootballTeam team8 = new FootballTeam("Sepsi OSK Sf. Gheorghe", 9 / 321 / 323.33,
+        FootballTeam team8 = new FootballTeam("Sepsi OSK Sf. Gheorghe", 9321323.33,
                 "Stadionul Municipal", 28);
-        FootballTeam team9 = new FootballTeam("FC Dinamo Bucuresti", 15 / 921 / 783.23,
+        FootballTeam team9 = new FootballTeam("FC Dinamo Bucuresti", 15921783.23,
                 "Stefan Cel Mare", 28);
-        FootballTeam team10 = new FootballTeam("FC Hermannstadt", 10 / 356 / 426.53,
+        FootballTeam team10 = new FootballTeam("FC Hermannstadt", 10356426.53,
                 "Stadionul Municipal Sibiu", 23);
-        FootballTeam team11 = new FootballTeam("FC Poli Iasi", 10 / 643 / 875.32,
+        FootballTeam team11 = new FootballTeam("FC Poli Iasi", 10643875.32,
                 "Emil Alexandrescu", 22);
-        FootballTeam team12 = new FootballTeam("AFC Chindia Targoviste", 5 / 531 / 245.15,
+        FootballTeam team12 = new FootballTeam("AFC Chindia Targoviste", 5531245.15,
                 "Eugen Popescu", 21);
-        FootballTeam team13 = new FootballTeam("FC Academica Clinceni", 4 / 735 / 654.57,
+        FootballTeam team13 = new FootballTeam("FC Academica Clinceni", 4735654.57,
                 "Stadionul Clinceni", 20);
-        FootballTeam team14 = new FootballTeam("FC Voluntari", 6 / 463 / 731.73,
+        FootballTeam team14 = new FootballTeam("FC Voluntari", 6463731.73,
                 "Anghel Iordanescu", 8);
 
         top.add(team1);
@@ -62,12 +62,16 @@ public class FootballLeague {
         top.add(team13);
         top.add(team14);
         Collections.sort(top);
-
+        for (FootballTeam footballTeam : top) {
+            footballTeam.setChampionshipPosition(top.indexOf(footballTeam));
+        }
 
     }
-    public ArrayList<FootballTeam> getTop(){
+
+    public ArrayList<FootballTeam> getTop() {
         return top;
     }
+
     private FootballLeague() {
     }
 }

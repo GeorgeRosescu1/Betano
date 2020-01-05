@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     TextView signUpBtn, displatTxt;
     ProgressBar progressBar;
+    boolean valid = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         progressBar = findViewById(R.id.progress_bar);
-        displatTxt = findViewById(R.id.login_text);
-        signUpBtn = findViewById(R.id.signUpText);
-        loginBtn = findViewById(R.id.loginBtn);
-        final EditText editTextMail = findViewById(R.id.userMail);
-        final EditText editTextPass = findViewById(R.id.userPass);
+        signUpBtn = findViewById(R.id.signup_txt);
+        loginBtn = findViewById(R.id.btn_login);
+        final EditText editTextMail = findViewById(R.id.login_mail);
+        final EditText editTextPass = findViewById(R.id.login_pass);
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,26 +64,40 @@ public class LoginActivity extends AppCompatActivity {
                 final String myPass;
                 myEmail = editTextMail.getText().toString();
                 myPass = editTextPass.getText().toString();
-                progressBar.setVisibility(View.VISIBLE);
-                mAuth.signInWithEmailAndPassword(myEmail, myPass)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(LoginActivity.this, "FailAuth", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    progressBar.setVisibility(View.VISIBLE);
-                                    finish();
+                if (myEmail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(myEmail).matches()) {
+                    editTextMail.setError("enter a valid email address");
+                    valid = false;
+                } else {
+                    editTextMail.setError(null);
+                }
+                if (myPass.isEmpty() || myPass.length() < 4 || myPass.length() > 10) {
+                    editTextPass.setError("between 4 and 10 alphanumeric characters");
+                    valid = false;
+                } else {
+                    editTextPass.setError(null);
+                }
+                if (valid == true) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    mAuth.signInWithEmailAndPassword(myEmail, myPass)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(LoginActivity.this, "FailAuth", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        progressBar.setVisibility(View.VISIBLE);
+                                        finish();
+                                    }
                                 }
-                            }
 
 
-                        });
+                            });
+                }
             }
         });
     }

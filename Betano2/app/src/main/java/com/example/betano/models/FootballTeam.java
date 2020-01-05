@@ -24,6 +24,14 @@ public class FootballTeam implements Comparable {
         this.points = points;
     }
 
+    public FootballTeam(String teamName, Double budget, String stadiumName, int championshipPosition, int points) {
+        this.teamName = teamName;
+        this.budget = budget;
+        this.stadiumName = stadiumName;
+        this.championshipPosition = championshipPosition;
+        this.points = points;
+    }
+
     public int getPoints() {
         return points;
     }
