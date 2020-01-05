@@ -7,6 +7,7 @@ public class User {
     private String lastName;
     private String userType;
     private String email;
+    private String uid;
 
 
     public User() {
@@ -18,6 +19,14 @@ public class User {
         this.age = age;
         this.lastName = lastName;
         this.userType = userType;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getEmail() {

@@ -3,6 +3,7 @@ package com.example.betano.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Button loginBtn;
     TextView signUpBtn, displatTxt;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_login);
 
+        progressBar = findViewById(R.id.progress_bar);
         displatTxt = findViewById(R.id.login_text);
         signUpBtn = findViewById(R.id.signUpText);
         loginBtn = findViewById(R.id.loginBtn);
@@ -60,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 final String myPass;
                 myEmail = editTextMail.getText().toString();
                 myPass = editTextPass.getText().toString();
-
+                progressBar.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(myEmail, myPass)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -69,13 +73,11 @@ public class LoginActivity extends AppCompatActivity {
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
-                                    // there was an error
-
-
                                     Toast.makeText(LoginActivity.this, "FailAuth", Toast.LENGTH_LONG).show();
                                 } else {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
+                                    progressBar.setVisibility(View.VISIBLE);
                                     finish();
                                 }
                             }

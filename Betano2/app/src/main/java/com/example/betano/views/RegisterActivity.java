@@ -3,9 +3,11 @@ package com.example.betano.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,18 +29,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "Regs";
-    Button backBtn, signUpBtn;
+    Button signUpBtn;
     EditText email, pass, firstName, lastName, age;
     Spinner userType;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     DatabaseReference referenceU;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        backBtn = findViewById(R.id.back_btn);
         signUpBtn = findViewById(R.id.sign_up_btn);
         email = findViewById(R.id.email_register);
         pass = findViewById(R.id.pass_register);
@@ -48,13 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
         userType = findViewById(R.id.type_spinner);
         referenceU = FirebaseDatabase.getInstance().getReference().child("User");
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                finish();
-            }
-        });
+
+
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
                 lastNameT = lastName.getText().toString();
                 ageT = age.getText().toString();
                 userTypeT = userType.getSelectedItem().toString();
+                progressDialog = new ProgressDialog(RegisterActivity.this);
+                progressDialog.show();
+                progressDialog.setContentView(R.layout.progress_dialog);
 
                 if (userTypeT.equals("Gambler")) {
                     Gambler gambler = new Gambler();
@@ -95,8 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
                     admin.setAge(Integer.valueOf(ageT));
                     admin.setEmail(emailT);
                     referenceU.push().setValue(admin);
-                }else{
-                    Log.w(TAG,"Unknown user type",new Exception());
+                } else {
+                    Log.w(TAG, "Unknown user type", new Exception());
                 }
                 if (emailT != null && passT != null) {
                     auth.createUserWithEmailAndPassword(emailT, passT)
@@ -106,7 +107,9 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         FirebaseUser user = auth.getCurrentUser();
+                                        progressDialog.dismiss();
                                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                        finish();
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -122,5 +125,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        finish();
+        return true;
     }
 }

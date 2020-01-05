@@ -110,29 +110,12 @@
         </Spinner>
 
         <Button
-            android:id="@+id/back_btn"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_below="@id/type_spinner"
-            android:layout_marginLeft="10dp"
-            android:text="Back"
-            android:layout_marginTop="15dp"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:paddingBottom="20dp"
-            ></Button>
-
-        <Button
             android:id="@+id/sign_up_btn"
-            android:layout_width="100dp"
+            android:layout_width="140dp"
             android:layout_height="35dp"
             android:layout_below="@id/type_spinner"
-            android:layout_marginStart="195dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/back_btn"
+            android:layout_centerHorizontal="true"
             android:background="@android:color/white"
             android:gravity="center"
             android:text="Sign Up"></Button>

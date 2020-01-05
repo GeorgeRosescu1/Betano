@@ -33,11 +33,12 @@ public class FragmentProfile extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReferenceUser = database.getReference("User");
     FirebaseAuth auth = FirebaseAuth.getInstance();
-    FirebaseUser user = auth.getCurrentUser();
+    FirebaseUser cUser = auth.getCurrentUser();
     TextView name;
     TextView status;
     TextView email;
     TextView age;
+    String cEmail;
 
     @Nullable
     @Override
@@ -49,22 +50,26 @@ public class FragmentProfile extends Fragment {
         status = view.findViewById(R.id.user_status);
         email = view.findViewById(R.id.user_mail);
         age = view.findViewById(R.id.user_age);
+        cEmail=cUser.getEmail();
 
-        email.setText(user.getEmail());
+        email.setText(cUser.getEmail());
+
         databaseReferenceUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     User user = new User();
-                    user.setFirstName(ds.getValue(User.class).getFirstName());
-                    user.setLastName(ds.getValue(User.class).getLastName());
-                    user.setAge(ds.getValue(User.class).getAge());
-                    user.setEmail(ds.getValue(User.class).getEmail());
-                    user.setUserType(ds.getValue(User.class).getUserType());
+                    if (cEmail.equals(ds.getValue(User.class).getEmail())) {
+                        user.setFirstName(ds.getValue(User.class).getFirstName());
+                        user.setLastName(ds.getValue(User.class).getLastName());
+                        user.setAge(ds.getValue(User.class).getAge());
+                        user.setEmail(ds.getValue(User.class).getEmail());
+                        user.setUserType(ds.getValue(User.class).getUserType());
 
-                    name.setText(user.getLastName() + " " + user.getFirstName());
-                    status.setText(user.getUserType());
-                    age.setText(String.valueOf(user.getAge()));
+                        name.setText(user.getLastName() + " " + user.getFirstName());
+                        status.setText(user.getUserType());
+                        age.setText(String.valueOf(user.getAge()));
+                    }
                 }
             }
 
