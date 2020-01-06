@@ -7,8 +7,10 @@ public class FootballMatchBet extends Bet {
     private FootballTeam homeTeam = new FootballTeam();
     private FootballTeam awayTeam = new FootballTeam();
     private String date;
-    private double homeTeamShare;
-    private double awayTeamShare;
+    private int BetWin;
+    public double homeTeamShare;
+    public double awayTeamShare;
+    public double drawTeamShare;
 
     public FootballTeam getHomeTeam() {
         return homeTeam;
@@ -39,37 +41,32 @@ public class FootballMatchBet extends Bet {
                 9.93 * (14 - homeTeam.getChampionshipPosition()) * (homeTeam.getBudget()) / 3);
         this.awayTeamShare = awayTeam.getBudget() / (awayTeam.getStadiumName().length() *
                 9.93 * (14 - awayTeam.getChampionshipPosition()) * (awayTeam.getBudget()) / 3) + 2.14;
+        this.drawTeamShare = (this.homeTeamShare + this.awayTeamShare) * 0.85 +1;
     }
 
     private int determineWinner() {
+        Random winner = new Random();
+        int win;
+        win = winner.nextInt(2);
+        return win;
+    }
+    public double earning(int betWin){
+        int winner = determineWinner();
+        if(winner == betWin && betWin == 0)
+            return getInvestmentSum() * homeTeamShare;
+        if(winner == betWin && betWin == 1)
+            return getInvestmentSum()*drawTeamShare;
+        if(winner == betWin && betWin == 2)
+            return getInvestmentSum() * drawTeamShare;
+        return 0;
 
-        double homeToWin = 1;
-        double awayToWin = 1;
-        Random luck = new Random();
-        Random matchSituations = new Random();
-
-        double luckyTeam = luck.nextDouble() + 1;
-        double matchFactors = (matchSituations.nextDouble() + 2) * 2;
-
-        if (luckyTeam == 1)
-            homeToWin = 3;
-        else
-            awayToWin = 3;
-
-        homeToWin *= matchFactors * this.homeTeamShare;
-        awayToWin *= matchFactors * this.awayTeamShare;
-
-        if (homeToWin > awayToWin)
-            return 1;
-        else
-            return 2;
     }
 
-    public double bet(double sum, int team) {
-        if (determineWinner() == team && team == 1)
-            return sum * this.homeTeamShare;
-        if (determineWinner() == team && team == 2)
-            return sum * this.awayTeamShare;
-        return 0;
+    public int getBetWin() {
+        return BetWin;
+    }
+
+    public void setBetWin(int betWin) {
+        BetWin = betWin;
     }
 }

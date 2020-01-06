@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_all_bets"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.FragmentAllBets">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="GAME TEXT"
+                android:textColor="@color/darkgreen"
+                android:gravity="center"
+                android:id="@+id/game_name_description"
+                >
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/draw"
+                android:layout_height="50dp"
+                android:layout_below="@+id/game_name_description"
+                android:text="DRAW!"
+                android:textColor="@color/darkgreen"
+                android:gravity="center|center"
+                >
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/win1"
+                android:layout_below="@+id/game_name_description"
+                android:gravity="left|center"
+                android:layout_marginLeft="10dp"
+                android:text="WIN1"
+                android:textColor="@color/darkgreen">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/win2"
+                android:layout_below="@+id/game_name_description"
+                android:gravity="center|right"
+                android:layout_marginRight="10dp"
+                android:text="WIN2"
+                android:textColor="@color/darkgreen"
+                >
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/draw"
+                android:id="@+id/share1"
+                android:gravity="left|center"
+                android:text="team 1"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/darkgreen"
+
+                >
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/draw"
+                android:id="@+id/share_x"
+                android:gravity="center"
+                android:text="draw"
+                android:textColor="@color/darkgreen"
+                >
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/draw"
+                android:id="@+id/share2"
+                android:gravity="right|center"
+                android:text="team 2"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/darkgreen"
+                >
+            </TextView>
+
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
