@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="#fff">
 
-    <ImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/profile_pic"
         android:layout_width="170dp"
         android:layout_height="170dp"
+        android:src="@drawable/user"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"
-        android:background="@android:color/holo_purple"
         android:scaleType="fitCenter"
-        android:src="@drawable/user"></ImageView>
+        app:civ_border="true"
+        app:civ_border_color="@color/gold"
+        app:civ_border_width="10dp"
+        app:civ_shadow="true"
+        app:civ_shadow_radius="10"
+        app:civ_shadow_color="#3f51b5"/>
 
     <TextView
         android:id="@+id/final_user_name"
@@ -26,7 +32,8 @@
         android:gravity="center"
         android:text="User Final Name"
         android:textColor="@android:color/black"
-        android:textSize="15dp"></TextView>
+        android:textSize="15dp"
+        ></TextView>
 
     <TextView
         android:id="@+id/user_status"
@@ -40,27 +47,75 @@
         android:textSize="15dp"></TextView>
 
     <TextView
-        android:id="@+id/user_mail"
-        android:layout_width="130dp"
-        android:layout_height="30dp"
+        android:id="@+id/user_mail_message"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_below="@+id/user_status"
-        android:gravity="center"
+        android:gravity="right"
+        android:text="Email:"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"></TextView>
+
+    <TextView
+        android:id="@+id/user_mail"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_below="@+id/user_status"
+        android:accessibilityTraversalAfter="@id/user_mail_message"
+        android:gravity="left"
         android:text="User Email"
         android:layout_marginTop="20dp"
         android:textColor="@android:color/black"
         android:textSize="15dp"></TextView>
 
     <TextView
-        android:id="@+id/user_age"
-        android:layout_width="130dp"
-        android:layout_height="30dp"
+        android:id="@+id/user_age_message"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_below="@+id/user_mail"
-        android:gravity="center"
-        android:text="User Age"
+        android:gravity="right"
+        android:text="Age:"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"></TextView>
+    <TextView
+        android:id="@+id/user_age"
+        android:layout_width="130dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_below="@+id/user_mail"
+        android:gravity="left"
+        android:text="Age"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"></TextView>
+
+    <TextView
+        android:id="@+id/user_budget_message"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/user_age"
+        android:gravity="right"
+        android:text="Budget:"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"></TextView>
+    <TextView
+        android:id="@+id/user_budget"
+        android:layout_width="130dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_below="@+id/user_age"
+        android:gravity="left"
+        android:text="Budget"
         android:textColor="@android:color/black"
         android:textSize="15dp"></TextView>
 
