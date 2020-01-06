@@ -56,11 +56,9 @@ public class FootballMatchBet extends Bet {
     }
 
     private void determineShares(FootballTeam homeTeam, FootballTeam awayTeam) {
-        this.homeTeamShare = homeTeam.getBudget() / (homeTeam.getStadiumName().length() *
-                9.93 * (14 - homeTeam.getChampionshipPosition()) * (homeTeam.getBudget()) / 3);
-        this.awayTeamShare = awayTeam.getBudget() / (awayTeam.getStadiumName().length() *
-                9.93 * (14 - awayTeam.getChampionshipPosition()) * (awayTeam.getBudget()) / 3) + 2.14;
-        this.drawTeamShare = (this.homeTeamShare + this.awayTeamShare) * 0.85 +1;
+        homeTeamShare = 2.43;
+        awayTeamShare = 1.67;
+        this.drawTeamShare = (this.homeTeamShare + this.awayTeamShare) * 0.85 + 1;
     }
 
     private int determineWinner() {
@@ -69,13 +67,14 @@ public class FootballMatchBet extends Bet {
         win = winner.nextInt(2);
         return win;
     }
-    public double earning(int betWin){
+
+    public double earning(int betWin) {
         int winner = determineWinner();
-        if(winner == betWin && betWin == 0)
+        if (winner == betWin && betWin == 0)
             return getInvestmentSum() * homeTeamShare;
-        if(winner == betWin && betWin == 1)
-            return getInvestmentSum()*drawTeamShare;
-        if(winner == betWin && betWin == 2)
+        if (winner == betWin && betWin == 1)
+            return getInvestmentSum() * drawTeamShare;
+        if (winner == betWin && betWin == 2)
             return getInvestmentSum() * drawTeamShare;
         return 0;
 

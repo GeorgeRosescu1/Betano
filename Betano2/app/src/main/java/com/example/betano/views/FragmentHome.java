@@ -1,6 +1,7 @@
 package com.example.betano.views;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -78,10 +79,8 @@ public class FragmentHome extends Fragment {
                             fab.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    startActivity(new Intent(getActivity().getBaseContext(), CreateBet.class));
 
-                                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                                            .setAction("Action", null).show();
-                                    //TODO add create bet
                                 }
                             });
                         }

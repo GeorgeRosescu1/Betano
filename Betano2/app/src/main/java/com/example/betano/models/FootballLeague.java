@@ -68,7 +68,7 @@ public class FootballLeague {
 
     }
 
-    public ArrayList<FootballTeam> getTop() {
+    public ArrayList<FootballTeam>  getTop() {
         return top;
     }
 
