@@ -36,6 +36,25 @@ public class FootballMatchBet extends Bet {
         this.date = date;
     }
 
+
+    public double getHomeTeamShare() {
+        return homeTeamShare;
+    }
+
+    public void setHomeTeamShare(double homeTeamShare) {
+        determineShares(this.homeTeam, this.awayTeam);
+        this.homeTeamShare = homeTeamShare;
+    }
+
+    public double getAwayTeamShare() {
+        determineShares(this.homeTeam, this.awayTeam);
+        return awayTeamShare;
+    }
+
+    public void setAwayTeamShare(double awayTeamShare) {
+        this.awayTeamShare = awayTeamShare;
+    }
+
     private void determineShares(FootballTeam homeTeam, FootballTeam awayTeam) {
         this.homeTeamShare = homeTeam.getBudget() / (homeTeam.getStadiumName().length() *
                 9.93 * (14 - homeTeam.getChampionshipPosition()) * (homeTeam.getBudget()) / 3);

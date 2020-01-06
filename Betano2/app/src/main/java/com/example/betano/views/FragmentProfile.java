@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.betano.R;
 import com.example.betano.models.Admin;
+import com.example.betano.models.FootballMatchBet;
 import com.example.betano.models.User;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -71,6 +72,7 @@ public class FragmentProfile extends Fragment {
                         age.setText(String.valueOf(user.getAge()));
                     }
                 }
+
             }
 
             @Override

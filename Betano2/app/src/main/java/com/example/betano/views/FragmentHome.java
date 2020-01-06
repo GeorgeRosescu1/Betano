@@ -1,5 +1,7 @@
 package com.example.betano.views;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ import com.example.betano.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,10 +44,15 @@ public class FragmentHome extends Fragment {
     ArrayList<FootballTeam> top = footballLeague.getTop();
     int index;
     TextView text;
-    Button saveBtn;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     FloatingActionButton fab;
-    FirebaseAuth auth;
+    FirebaseUser firebaseUser = auth.getCurrentUser();
+    DatabaseReference databaseReferenceUser = database.getReference("User");
+    String emailCurrentUser;
+    String typeCurrentUser;
 
+    @SuppressLint("RestrictedApi")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -52,32 +60,45 @@ public class FragmentHome extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         text = view.findViewById(R.id.inText);
-        saveBtn = view.findViewById(R.id.main_btn);
-        fab = view.findViewById(R.id.fab);
-        auth.getInstance();
+        fab = view.findViewById(R.id.fab_create_bet);
+        emailCurrentUser = firebaseUser.getEmail();
 
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
+        databaseReferenceUser.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    User user = new User();
+                    if (emailCurrentUser.equals(ds.getValue(User.class).getEmail())) {
+                        typeCurrentUser = ds.getValue(User.class).getUserType();
+                        Toast.makeText(getActivity(),"Preparing the data...",Toast.LENGTH_SHORT).show();
+                        text.setText("User is " + typeCurrentUser);
 
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                text.setText(top.get(index).getTeamName() + " " + top.get(index).getPoints());
-                index++;
-                if (index == top.size())
-                    index = 0;
+                        if (typeCurrentUser.equals("Admin")) {
+                            fab.setVisibility(View.VISIBLE);
+                            fab.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null).show();
+                                    //TODO add create bet
+                                }
+                            });
+                        }
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         });
 
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         return view;
     }
+
 }

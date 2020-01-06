@@ -76,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                     gambler.setLastName(lastNameT);
                     gambler.setAge(Integer.valueOf(ageT));
                     gambler.setEmail(emailT);
+
                     referenceU.push().setValue(gambler);
                 } else if (userTypeT.equals("Employee")) {
                     Employee employee = new Employee();
@@ -86,6 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                     employee.setAge(Integer.valueOf(ageT));
                     employee.setEmail(emailT);
                     employee.setSalary(2400);
+
                     referenceU.push().setValue(employee);
                 } else if (userTypeT.equals("Admin")) {
                     Admin admin = new Admin();
@@ -95,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                     admin.setLastName(lastNameT);
                     admin.setAge(Integer.valueOf(ageT));
                     admin.setEmail(emailT);
+
                     referenceU.push().setValue(admin);
                 } else {
                     Log.w(TAG, "Unknown user type", new Exception());

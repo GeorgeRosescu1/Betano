@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String myEmail;
                 final String myPass;
+                valid = true;
                 myEmail = editTextMail.getText().toString();
                 myPass = editTextPass.getText().toString();
                 if (myEmail.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(myEmail).matches()) {
